@@ -4,8 +4,10 @@ namespace App\Livewire;
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Livewire\Attributes\On;
 use Livewire\Component;
 use Livewire\WithPagination;
+use App\Models\Course;
 
 class ShowUserCourses extends Component
 {
@@ -14,7 +16,10 @@ class ShowUserCourses extends Component
     public string $campo="id", $orden="asc";
     public string $texto="";
 
-    
+    public bool $openDetalle=false;
+    public ?Course $course=null;
+
+    #[On('cursoCreado')]
     public function render()
     {
         $cursos=DB::table('courses')
@@ -38,5 +43,14 @@ class ShowUserCourses extends Component
     //Para que el buscador funcione en todas las paginas
     public function updatingTexto(){
         $this->resetPage();
+    }
+
+    //Metodos para detalle curso
+    public function detalleCurso(int $id){
+        $this->course=Course::findOrFail($id);
+        $this->openDetalle=true;
+    }
+    public function cerrarDetalle(){
+        $this->reset('openDetalle', 'course');
     }
 }
