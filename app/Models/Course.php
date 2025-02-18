@@ -51,6 +51,10 @@ class Course extends Model
         ];
     }
 
+    public function getArrayIdCourseTags(): array{
+        return $this->tags()->pluck('tags.id')->toArray();
+    }
+
 
 
 

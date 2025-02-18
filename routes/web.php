@@ -1,6 +1,9 @@
 <?php
 
 use App\Http\Controllers\InicioController;
+use App\Http\Controllers\TagController;
+use App\Http\Middleware\AdminMiddleware;
+use App\Livewire\ShowTypes;
 use App\Livewire\ShowUserCourses;
 use Illuminate\Support\Facades\Route;
 
@@ -15,4 +18,7 @@ Route::middleware([
         return view('dashboard');
     })->name('dashboard');
     Route::get('courses', ShowUserCourses::class)->name('courses');
+    
+    Route::resource('tags', TagController::class)->middleware(AdminMiddleware::class);
+    Route::get('types', ShowTypes::class)->name('show.types')->middleware(AdminMiddleware::class);
 });

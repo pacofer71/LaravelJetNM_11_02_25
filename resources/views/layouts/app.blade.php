@@ -47,12 +47,29 @@
 
     @livewireScripts
     <script>
+        
         Livewire.on('mensaje', txt => {
             Swal.fire({
                 icon: "success",
                 title: txt,
                 showConfirmButton: false,
                 timer: 1500
+            });
+        });
+
+        Livewire.on('onConfirmarBorrado', id => {
+            Swal.fire({
+                title: "¿Está seguro?",
+                text: "No podrá dehacer esta acción",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Si, borrar!"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    Livewire.dispatchTo('show-user-courses', 'borrarOk', id)
+                }
             });
         });
     </script>
