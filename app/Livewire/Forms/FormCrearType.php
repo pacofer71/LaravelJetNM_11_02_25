@@ -12,7 +12,7 @@ class FormCrearType extends Form
     public string $nombre="";
 
     #[Validate(['required', 'color_hex'])]
-    public string $color="";
+    public string $color="#000000";
 
     public function formStoreType(){
         $this->validate();

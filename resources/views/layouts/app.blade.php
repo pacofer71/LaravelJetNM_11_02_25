@@ -46,8 +46,17 @@
     @stack('modals')
 
     @livewireScripts
+    @session('mensaje')
     <script>
-        
+          Swal.fire({
+                icon: "success",
+                title: "{{session('mensaje')}}",
+                showConfirmButton: false,
+                timer: 1500
+            });
+    </script>
+    @endsession
+    <script>
         Livewire.on('mensaje', txt => {
             Swal.fire({
                 icon: "success",
@@ -69,6 +78,21 @@
             }).then((result) => {
                 if (result.isConfirmed) {
                     Livewire.dispatchTo('show-user-courses', 'borrarOk', id)
+                }
+            });
+        });
+        Livewire.on('onBorrarType', id => {
+            Swal.fire({
+                title: "¿Está seguro?",
+                text: "No podrá dehacer esta acción",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Si, borrar!"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    Livewire.dispatchTo('show-types', 'borrarOk', id)
                 }
             });
         });

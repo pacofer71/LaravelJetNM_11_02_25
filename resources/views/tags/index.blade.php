@@ -50,4 +50,5 @@
             </tbody>
         </table>
     </x-self.base>
+    
 </x-app-layout>

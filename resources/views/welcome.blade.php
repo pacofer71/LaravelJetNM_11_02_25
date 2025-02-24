@@ -5,7 +5,8 @@
             <article
                 @class(
                 [ 'rounded-3xl shadow-lg transition-all duration-300 h-92
-                         transform hover:scale-105 hover:shadow-2xl overflow-hidden' , 'md:col-span-2'=> $loop->first
+                         transform hover:scale-105 hover:shadow-2xl overflow-hidden border-2 border-black' , 
+                         'md:col-span-2'=> $loop->first
                 ])
                 >
                 <div class="flex flex-col h-full w-full justify-between">
